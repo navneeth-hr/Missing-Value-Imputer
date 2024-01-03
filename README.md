@@ -10,21 +10,6 @@ A Python package for handling missing values in datasets.
 
 View our package on Test PyPI - https://test.pypi.org/project/MissingValImputerDats6450/
 
-## Installation
-
-To install `MissingValImputerDats6450`, use the following command:
-
-```bash
-pip install scikit-learn
-pip install scikit-build
-pip install numpy
-pip install pandas
-pip install missforest
-pip install copy
-pip install lightgbm
-pip install -i https://test.pypi.org/simple/ MissingValImputerDats6450
-```
-
 ## Usage
 Here is an example of how to use MissingValImputerDats6450 with IRIS dataset:
 ```
@@ -32,37 +17,47 @@ Here is an example of how to use MissingValImputerDats6450 with IRIS dataset:
 
 %pip install -i https://test.pypi.org/simple/ MissingValImputerDats6450
 
-#Import the required libraries
-
 import seaborn as sns
+import numpy as np
 
 from MissingValImputerDats6450.MissingValImputerDats6450 import MissingValImputerDats6450
 
-#Load IRIS dataset
-
-dataframe = sns.load_dataset("iris")
-
+dataframe = sns.load_dataset("diamonds")
 dataframe
-
-#Add NaN values randomly
-
-columns_with_missing = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species']
-
-missing_percentage = 0.2
+columns_with_missing = ['depth', 'table', 'x', 'z','y']
+missing_percentage = 0.30
 
 for column in columns_with_missing:
     mask = np.random.rand(len(dataframe)) < missing_percentage
     dataframe.loc[mask, column] = np.nan
 
-#Check the missing value dataset
-
 dataframe
-
-#Verify the filled missing values
+%%time
 
 mvh = MissingValImputerDats6450()
-mvh.fit(dataframe, "species", categorical=["species"])
+mvh.fit(dataframe, "price", categorical=["cut","color","clarity"])
 dataframe = mvh.transform(dataframe)
-
 dataframe
+sns.heatmap(dataframe.corr(), annot=True)
+df = sns.load_dataset('diamonds')
+diff = df.corr()
+sns.heatmap(diff,annot  =True)
+!pip install xgboost
+!pip install MissForest
+from missforest.missforest import MissForest
+dataframe1 = sns.load_dataset("diamonds")
+dataframe1
+columns_with_missing = ['depth', 'table', 'x', 'z','y']
+missing_percentage = 0.30
+
+for column in columns_with_missing:
+    mask = np.random.rand(len(dataframe1)) < missing_percentage
+    dataframe1.loc[mask, column] = np.nan
+
+dataframe1
+%%time
+
+mvht = MissForest()
+mvht.fit(dataframe1, categorical=["cut","color","clarity"])
+dataframe1 = mvh.transform(dataframe1)
 ```
