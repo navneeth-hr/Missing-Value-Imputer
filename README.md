@@ -11,7 +11,7 @@ A Python package for handling missing values in datasets.
 View our package on Test PyPI - https://test.pypi.org/project/MissingValImputerDats6450/
 
 ## Usage
-Here is an example of how to use MissingValImputerDats6450 with IRIS dataset:
+Here is an example of how to use MissingValImputerDats6450 with dataset:
 ```
 #Install the package
 
