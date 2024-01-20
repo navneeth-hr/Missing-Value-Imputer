@@ -38,15 +38,19 @@ mvh = MissingValImputerDats6450()
 mvh.fit(dataframe, "price", categorical=["cut","color","clarity"])
 dataframe = mvh.transform(dataframe)
 dataframe
+
 sns.heatmap(dataframe.corr(), annot=True)
 df = sns.load_dataset('diamonds')
 diff = df.corr()
 sns.heatmap(diff,annot  =True)
+
 !pip install xgboost
 !pip install MissForest
 from missforest.missforest import MissForest
+
 dataframe1 = sns.load_dataset("diamonds")
 dataframe1
+
 columns_with_missing = ['depth', 'table', 'x', 'z','y']
 missing_percentage = 0.30
 
@@ -59,5 +63,5 @@ dataframe1
 
 mvht = MissForest()
 mvht.fit(dataframe1, categorical=["cut","color","clarity"])
-dataframe1 = mvh.transform(dataframe1)
+dataframe1 = mvht.transform(dataframe1)
 ```
