@@ -6,7 +6,7 @@ A Python package for handling missing values in datasets.
 
 ## Overview
 
-`MissingValImputerDats6450` is a Python package that provides a `MissingValImputerDats6450` class to handle missing values in datasets. It uses a combination of machine learning models and imputation techniques to impute missing values in a principled manner.
+`MissingValImputerDats6450` is a Python package that provides a `MissingValImputerDats6450` class to handle missing values in datasets. It uses a combination of feature importance and MissForest imputation techniques to impute missing values in a principled manner.
 
 View our package on Test PyPI - https://test.pypi.org/project/MissingValImputerDats6450/
 
